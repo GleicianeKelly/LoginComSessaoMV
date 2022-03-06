@@ -30,6 +30,22 @@ public class CadastroAdminService {
 		}
 
 	}
+	
+	public boolean encontrarPorSenha(String nome, String senha) {
+		try {
+			Optional<CadastroAdmin> cadastroEncontrado = this.cadastro.findByName(nome);
+			if (!cadastroEncontrado.isPresent()) {
+				throw new DbException("Usuário não encontrado");
+			}
+			if(cadastroEncontrado.get().getNome().equalsIgnoreCase(nome) 
+					&& cadastroEncontrado.get().getSenha().equalsIgnoreCase(senha)) {
+				return true;
+			}
+			return false;
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
 
 	public boolean salvar(CadastroAdmin object) {
 		try {

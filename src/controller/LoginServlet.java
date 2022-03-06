@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -21,7 +20,7 @@ import service.CadastroAdminService;
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+		public static String mensagemTres = "";
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -49,25 +48,25 @@ public class LoginServlet extends HttpServlet {
 		
 		Login login = new Login();
 		
-		
-		String nome = request.getParameter("nome");
+		mensagemTres = "";
+		String nome = request.getParameter("nome").toLowerCase();
 		String senha = request.getParameter("senha");
 		//PrintWriter out = response.getWriter();
 		//String mensagem;
 		
 		try {
 			CadastroAdminService cadastro = new CadastroAdminService();
-			CadastroAdmin resultado = cadastro.encontrarPorNome(nome);
-			if(resultado != null) {
-				if(resultado.getSenha().equals(senha) && resultado.getNome().equals(nome)) {
+			boolean resultado = cadastro.encontrarPorSenha(nome, senha);
+			if(resultado) {
 					HttpSession session = request.getSession();
 					session.setAttribute("usuario", nome);
 					response.sendRedirect("MenuCadastro.jsp");
 				}
 				else {
 					response.sendRedirect("index.jsp");
+					mensagemTres = "Email ou senha incorretos! ";
 				}
-			}
+			
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -75,6 +74,7 @@ public class LoginServlet extends HttpServlet {
 		}catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			response.sendRedirect("index.jsp");
+			mensagemTres = "Email ou senha incorretos! ";
 		}
 		
 		

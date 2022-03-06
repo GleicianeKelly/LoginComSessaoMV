@@ -20,7 +20,7 @@ import service.CadastroAdminService;
 @WebServlet("/ListarDevServlet")
 public class ListarDevServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-		public static String mensagemDois = "";
+	public static String mensagemDois = "";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -51,20 +51,25 @@ public class ListarDevServlet extends HttpServlet {
 
 		mensagemDois = "";
 		CadastroAdmin cadastro = new CadastroAdmin();
-		String nome = request.getParameter("usuario");
+		String senha = request.getParameter("usuario");
 		HttpSession session = request.getSession();
 		String usuarioEncontrado = (String) session.getAttribute("usuario");
-		if (nome.equalsIgnoreCase(usuarioEncontrado)) {
-
-			//System.out.println(usuarioEncontrado);
+	
 			CadastroAdminService cadastroBean;
+			mensagemDois = "";
 			try {
-				mensagemDois = "";
 				cadastroBean = new CadastroAdminService();
+				if(cadastroBean.encontrarPorSenha(usuarioEncontrado, senha)) {
+				mensagemDois = "";				
 				cadastro = cadastroBean.encontrarPorNome(usuarioEncontrado);
 				request.setAttribute("cadastro", cadastro);
 				RequestDispatcher d = request.getRequestDispatcher("ListarDev.jsp");
 				d.forward(request, response);
+				}
+				else {
+					mensagemDois = "Senha incorreta, digite novamente";
+					response.sendRedirect("ListarDev.jsp");
+				}
 				// formard leva tudo que trouxe
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -74,11 +79,8 @@ public class ListarDevServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		} else {
-			mensagemDois = "Usuário incorreto, digite novamente";
-			response.sendRedirect("ListarDev.jsp");
 		}
 
 	}
 
-}
+

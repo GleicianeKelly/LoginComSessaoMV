@@ -10,6 +10,7 @@
 	else{
 		out.println("Bem-vindo(a) " + user + " !");
 	}
+
 	
 %>
 

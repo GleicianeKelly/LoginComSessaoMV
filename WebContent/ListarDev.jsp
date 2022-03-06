@@ -39,10 +39,10 @@
  <form action="ListarDevServlet" method="POST">
 		<div id="cadastro">
 			<fieldset>
-				<legend>Confirme seu usuário</legend>
+				<legend>Confirme sua senha</legend>
 				<table>
 					<tr>
-                        <td><label for="usuario">Usuário: </label></td>
+                        <td><label for="usuario">Senha: </label></td>
 						<td><input type="text" name="usuario" id="usuario" 
 							required="true" style="text-transform: uppercase;" /></td>
 					</tr>                  
@@ -73,7 +73,7 @@
 							<td>${cadastro.nome}</td>
 							<td>${cadastro.senha}</td>
 							
-							<td><a href="ExcluirServlet.jsp?id=${cadastro.cd_usuario}">Excluir</a>
+							<td>
 								<a
 								href="CidadeEdit.jsp?cidCodigo=${cidade.codigo}&&cidDescricao=${cidade.descricao}&&cidUF=${cidade.uf}">Editar</a>
 							</td>
