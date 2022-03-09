@@ -51,6 +51,7 @@ public class CadastroAdminServlet extends HttpServlet {
 			cadastro.setNome(request.getParameter("nomeAdmin"));
 			cadastro.setSenha(request.getParameter("senha"));
 			
+			
 			if(cadastroBean.salvar(cadastro)) {
 				mensagem = "Cadastrado com sucesso!!";
 				response.sendRedirect("Cadastro.jsp");

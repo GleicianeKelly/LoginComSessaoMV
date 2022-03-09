@@ -98,8 +98,8 @@ public class CadastroAdminService {
 		CadastroAdmin admin = new CadastroAdmin();
 
 		admin.setNome("Kelly");
-		admin.setSenha("1234");
-		cadastroService.salvar(admin);
+		admin.setSenha("123");
+		cadastroService.editar(admin);
 		
 		
 

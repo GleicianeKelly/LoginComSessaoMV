@@ -1,11 +1,16 @@
 package controller;
 
-import jakarta.servlet.http.HttpServlet;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.CadastroAdmin;
+import service.CadastroAdminService;
 
 /**
  * Servlet implementation class EditarServlet
@@ -37,6 +42,27 @@ public class EditarServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
+		CadastroAdmin cadastro = new CadastroAdmin();
+		
+		CadastroAdminService cadastroBean = null;
+		try {
+			cadastroBean = new CadastroAdminService();
+			
+			cadastro.setCd_usuario(Integer.parseInt(request.getParameter("codigo")));
+			cadastro.setNome(request.getParameter("nome_usuario"));
+			cadastro.setSenha(request.getParameter("senha"));
+			
+			System.out.println(cadastro.getNome());
+			
+			cadastroBean.salvar(cadastro);
+			response.sendRedirect("ListarDev.jsp");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		

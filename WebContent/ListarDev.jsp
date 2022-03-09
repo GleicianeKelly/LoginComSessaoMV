@@ -75,7 +75,7 @@
 							
 							<td>
 								<a
-								href="CidadeEdit.jsp?cidCodigo=${cidade.codigo}&&cidDescricao=${cidade.descricao}&&cidUF=${cidade.uf}">Editar</a>
+								href="EditarUsuario.jsp?codigo=${cadastro.cd_usuario}&&nome_usuario=${cadastro.nome}&&senha=${cadastro.senha}">Editar</a>
 							</td>
 						</tr>
 			

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+	
 <%
 
 	if(session.getAttribute("usuario") == null){
@@ -15,11 +15,9 @@
 String acaoSalvar = request.getParameter("salvar");
 
 
-
-
 Integer codigo = Integer.parseInt(request.getParameter("codigo"));
-String nome_vacina = (request.getParameter("nome_vacina"));
-String marca = request.getParameter("marca");
+String nome_usuario = (request.getParameter("nome_usuario"));
+String senha = request.getParameter("senha");
 
 
 
@@ -27,7 +25,7 @@ String marca = request.getParameter("marca");
 
 <script type="text/javascript">
 	function voltar() {
-		location.href = "listarVacina.jsp";
+		location.href = "MenuCadastro.jsp";
 	}
 </script>
 
@@ -39,38 +37,38 @@ String marca = request.getParameter("marca");
 <meta charset="ISO-8859-1">
 <link rel="icon" href="img/favicon.ico.jpg">
 <link rel="stylesheet" href="css/lista.css">
-<title>Atualizar Vacina</title>
+<title>Atualizar Usuário</title>
 </head>
 <body>
 
-	<form action="EditarVacinaServlet" method="POST">
+	<form action="EditarServlet" method="POST">
 		<div id="Form">
 			<fieldset>
-				<legend>Atualizar Vacina</legend>
+				<legend>Atualizar Cadastro</legend>
 				<table>
 					<tr>
 						<td><label for="codigo"></label></td>
-						<td><input type="hidden" name="id_codigo" 
+						<td><input type="hidden" name="codigo" 
 						id="codigo" size="6" value="<%=codigo%>" /></td>
 					<tr>
 					<tr>
-						<td><label for="codigo">Id vacina: </label></td>
+						<td><label for="codigo">Id usuário: </label></td>
 						<td><input type="text" disabled="true"
 						id="codigo" size="6" value="<%=codigo%>" /></td>
 					<tr>
 					<tr>
-						<td><label for="nome_vacina">Nome vacina: </label></td>
-						<td><input type="text" name="nome_vacina"
-							id="nome_vacina" required="true"
+						<td><label for="nome_usuario">Nome usuário: </label></td>
+						<td><input type="text" name="nome_usuario"
+							id="nome_usuario" required="true"
 							style="text-transform: uppercase;" 
-							value="<%=nome_vacina%>" /></td>
+							value="<%=nome_usuario%>" /></td>
 					<tr>
 					<tr>
-						<td><label for="marca">Marca: </label></td>
-						<td><input type="text" name="marca"
-							id="marca" required="true"
+						<td><label for="senha">Senha: </label></td>
+						<td><input type="text" name="senha"
+							id="senha" required="true"
 							style="text-transform: uppercase;" 
-							value="<%=marca%>" /></td>
+							value="<%=senha%>" /></td>
 					</tr>
 				</table>
 				<hr>
